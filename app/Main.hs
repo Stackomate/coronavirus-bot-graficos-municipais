@@ -317,7 +317,9 @@ exibirTabela municipioId nome tabela vizinhos municipioIds = do
     putStrLn renderizar  
 
     putStrLn "Municípios Vizinhos: "
-
+    if ((length vizinhos) == 0) then do
+        putStrLn "Este município está isolado. Apenas Fernando de Noronha/PE e Ilhabela/SP não tem municípios vizinhos. "
+    else do return ()
     mapM_ (imprimirVizinho municipioIds) vizinhos
 
     return ()
@@ -345,7 +347,7 @@ gerarGraficoMedia arq titulo legenda dados legendaMedia dadosMediaMovel = do
 
 data TipoGrafico = Casos | Obitos deriving (Eq)
 
--- gerarVizinhos100k :: FilePath -> String -> IO ()
+gerarVizinho100k :: [Char] -> Map.Map Field Field -> TipoGrafico -> String -> IO (String, String, [(LocalTime, Double)])
 gerarVizinho100k pastaOutput municipioIds tipo id = do
     let municipioFile = getMunicipioFile id pastaOutput
     jsonExiste <- procuraArquivoMunicipio municipioFile  
