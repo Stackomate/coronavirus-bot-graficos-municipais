@@ -32,6 +32,7 @@ import qualified Text.Read as TR
 import qualified Data.HashMap.Strict as HM
 import qualified Data.Vector as DV
 import qualified Data.Scientific as DataScientific
+import qualified System.Environment as SE
 
 -- Mensagens de sucesso e erro
 teveErro _ = putStrLn "CSV possui erros. Impossível continuar a operação."
@@ -615,6 +616,8 @@ parseCSVMunicipioId arquivo conteudo = do
 -- Funcao principal
 main :: IO ()
 main = do
+    args <- getArgs
+    putStrLn args
     putStrLn ""
     putStrLn ""
     putStrLn ""
